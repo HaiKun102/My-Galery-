@@ -1,23 +1,326 @@
-<html>
-  <head>
-    <title>My Art Gallery</title>
-  </head>
-  <body>
-    <h1>Most of my all time arts!</h1>
-    <p>I barely draw or paint but When I get to work, I do with my best efforts. That should explain why all that time I only have a few pieces.</p>
-    <img src="HfA1.jpeg" alt="I did this one when I was 9th grade to compete in a Heart for Art competition, and won 2nd place" />
-    <img src="HfA2.jpeg" alt="I did this one when I was 11th grade to compete in a Heart for Art competition, and won 2nd place again :(" />
-    <img src="DigitalArtHfA.heic" alt="I drew my idea for the second Heart for Art piece on my Ipad" />
-    <img src="JournalCover.jpeg" alt="This is the cover of my journal in my high school art class" />
-    <img src="BasicDrawing1.jpeg" alt="First piece in basic drawing class in college" />
-    <img src="BasicDrawing2.jpeg" alt="Second piece in basic drawing class in college" />
-    <img src="BasicDrawing3.jpeg" alt="Third piece in basic drawing class in college" />
-    <img src="BasicDrawing4.jpeg" alt="Fourth piece in basic drawing class in college" />
-    <img src="2dDesign1.jpeg" alt="First piece in 2D design class in college" />
-    <img src="2dDesign2.jpeg" alt="Second piece in 2D design class in college" />
-    <img src="2dDesign3.jpeg" alt="Third piece in 2D design class in college" />
-    <img src="2dDesign4.jpeg" alt="Fourth piece in 2D design class in college" />
-    <img src="2dDesign5.jpeg" alt="Fifth piece in 2D design class in college" />
-    <img src="2dDesign6.jpeg" alt="Sixth piece in 2D design class in college" />
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Art Gallery</title>
+  <style>
+    :root {
+      --bg: #0f0f14;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --text: #f5f1eb;
+      --muted: #c8c0b7;
+      --accent: #d6a86a;
+      --accent-2: #8f6bd8;
+      --shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
+      --radius: 22px;
+      --max-width: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(143, 107, 216, 0.22), transparent 30%),
+        radial-gradient(circle at top right, rgba(214, 168, 106, 0.22), transparent 28%),
+        linear-gradient(180deg, #12121a 0%, #0b0b10 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 72px 0 42px;
+    }
+
+    .hero {
+      background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 42px 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 4.1rem);
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    .intro {
+      max-width: 760px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .hero-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #f2e7d6;
+      font-size: 0.95rem;
+    }
+
+    main {
+      padding-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 1.55rem;
+      margin: 10px 0 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .art-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .art-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      border-color: rgba(214, 168, 106, 0.4);
+    }
+
+    .art-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      background: #1a1a22;
+    }
+
+    .art-info {
+      padding: 16px 16px 18px;
+    }
+
+    .art-info h2 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      color: #fff7ec;
+    }
+
+    .art-info p {
+      font-size: 0.96rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 10px 0 48px;
+      color: #b8b0a7;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .tip-box {
+      margin-top: 28px;
+      background: rgba(143, 107, 216, 0.12);
+      border: 1px solid rgba(143, 107, 216, 0.25);
+      border-radius: 18px;
+      padding: 18px;
+      color: #ece6fa;
+    }
+
+    .tip-box strong {
+      color: #ffffff;
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 30px 20px;
+      }
+
+      .art-card img {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <section class="hero">
+        <span class="eyebrow">Portfolio Gallery</span>
+        <h1>Most of my all-time artworks</h1>
+        <p class="intro">
+          I do not draw or paint all the time, but whenever I make something, I put real effort into it.
+          That is why I do not have a huge collection, but each piece means something to me.
+        </p>
+        <div class="hero-note">A small collection of work from high school to college</div>
+
+        <div class="tip-box">
+          <strong>Important for GitHub Pages:</strong> the file <code>DigitalArtHfA.heic</code> may not show in most browsers.
+          Convert it to <code>.jpg</code> or <code>.png</code> first, then update the filename in the code.
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+
+      <section class="gallery">
+        <article class="art-card">
+          <img src="HfA1.jpeg" alt="Heart for Art competition piece made in 9th grade" />
+          <div class="art-info">
+            <h2>Heart for Art — 9th Grade</h2>
+            <p>I made this piece in 9th grade for the Heart for Art competition and won 2nd place.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="HfA2.jpeg" alt="Heart for Art competition piece made in 11th grade" />
+          <div class="art-info">
+            <h2>Heart for Art — 11th Grade</h2>
+            <p>I created this one in 11th grade for Heart for Art and won 2nd place again.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="DigitalArtHfA.heic" alt="Digital concept sketch for Heart for Art piece" />
+          <div class="art-info">
+            <h2>Digital Concept</h2>
+            <p>I sketched this idea on my iPad while planning the second Heart for Art piece.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="JournalCover.jpeg" alt="Journal cover from high school art class" />
+          <div class="art-info">
+            <h2>Journal Cover</h2>
+            <p>This was the cover of my journal for my high school art class.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="BasicDrawing1.jpeg" alt="First basic drawing class piece in college" />
+          <div class="art-info">
+            <h2>Basic Drawing 1</h2>
+            <p>The first piece I made for my basic drawing class in college.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="BasicDrawing2.jpeg" alt="Second basic drawing class piece in college" />
+          <div class="art-info">
+            <h2>Basic Drawing 2</h2>
+            <p>The second piece from my college basic drawing class.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="BasicDrawing3.jpeg" alt="Third basic drawing class piece in college" />
+          <div class="art-info">
+            <h2>Basic Drawing 3</h2>
+            <p>The third work from my basic drawing class in college.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="BasicDrawing4.jpeg" alt="Fourth basic drawing class piece in college" />
+          <div class="art-info">
+            <h2>Basic Drawing 4</h2>
+            <p>The fourth piece from my college basic drawing class.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="2dDesign1.jpeg" alt="First 2D design class piece in college" />
+          <div class="art-info">
+            <h2>2D Design 1</h2>
+            <p>The first piece I created in my 2D design class in college.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="2dDesign2.jpeg" alt="Second 2D design class piece in college" />
+          <div class="art-info">
+            <h2>2D Design 2</h2>
+            <p>The second project from my 2D design class.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="2dDesign3.jpeg" alt="Third 2D design class piece in college" />
+          <div class="art-info">
+            <h2>2D Design 3</h2>
+            <p>The third work from my 2D design class in college.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="2dDesign4.jpeg" alt="Fourth 2D design class piece in college" />
+          <div class="art-info">
+            <h2>2D Design 4</h2>
+            <p>The fourth project from my 2D design class in college.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="2dDesign5.jpeg" alt="Fifth 2D design class piece in college" />
+          <div class="art-info">
+            <h2>2D Design 5</h2>
+            <p>The fifth piece from my 2D design class in college.</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="2dDesign6.jpeg" alt="Sixth 2D design class piece in college" />
+          <div class="art-info">
+            <h2>2D Design 6</h2>
+            <p>The sixth project from my 2D design class in college.</p>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Made by Tran Thanh Hai • GitHub Art Gallery</p>
+    </div>
+  </footer>
+</body>
 </html>
